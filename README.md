@@ -33,12 +33,6 @@ Mutations before delivery can coalesce into one callback, and mutations made ins
 
 The defaults helper reports writes made through the observed `UserDefaults` instance in the current process. A write through another instance, even one opened for the same suite, is readable through the observed instance but produces no callback, and writes from other processes are not reported. Share one instance between the code that writes a setting and the code that observes it.
 
-## Migrating from Application
-
-These helpers previously shipped in the `Application` package, now `AppLifecycle`. Depend on `ChangeMonitoring` and replace `import Application` with `import ChangeMonitoring` wherever only the monitoring helpers are used.
-
-Store every `ObservationToken` that `onChange(of:perform:)` returns. In Application 1.x a discarded token kept observing; it now stops observing as soon as it is released, and the result is no longer discardable, so the compiler flags calls that ignore it.
-
 ## Project records
 
 - [Development journal](Extras/Journal/index.md)
